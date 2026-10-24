@@ -31,6 +31,13 @@ var player;
 		platform2.y = platform0.y- 200;
 		platform2.color = "#66ff33";
 
+	platform3 = new GameObject();
+		platform3.width = 100;
+		platform3.x = 650;
+		platform3.color = "#66ff33";
+		platform3.y = platform0.y- 100;
+		platform3.color = "#66ff33";
+
 		
 	
 	goal = new GameObject({width:24, height:50, x:platform1.x, y:platform1.y+100, color:"#00ffff"});
@@ -116,6 +123,27 @@ function animate()
 		player.x--;
 		player.vx = 0;
 	}
+	while(platform3.hitTestPoint(player.bottom()) && player.vy >=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
+	while(platform3.hitTestPoint(player.left()) && player.vx <=0)
+	{
+		player.x++;
+		player.vx = 0;
+	}
+	while(platform3.hitTestPoint(player.right()) && player.vx >=0)
+	{
+		player.x--;
+		player.vx = 0;
+	}
+	while(platform3.hitTestPoint(player.top()) && player.vy <=0)
+	{
+		player.y++;
+		player.vy = 0;
+	}
 	
 	while(platform1.hitTestPoint(player.left()))
 	{
@@ -140,6 +168,7 @@ function animate()
 	
 	platform0.drawRect();
 	platform2.drawRect();
+	platform3.drawRect();
 	
 	player.drawRect();
 	
